@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-header v-if="true">
+    <el-container id="container">
+      <el-header
+        v-if="true"
+        id="header"
+      >
         <window-top></window-top>
       </el-header>
       <el-main>
         <router-view />
       </el-main>
-      <el-footer v-if="false">版权所有 © 2010-2017 大工酶设计京ICP备 15050778号
+      <el-footer>
+        版权所有 © 2010-2017 大工酶设计京ICP备 15050778号
         <br>
         Copyright © 2010-2019 DaGong Technology Co., Ltd. All Rights Reserved.
       </el-footer>
@@ -52,6 +56,9 @@ export default {
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -60,24 +67,37 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   background-color: white;
-  height: 100%;
-  /* overflow: auto; */
+  overflow-y: auto;
+  border: 5px solid red;
 }
 .el-header {
   color: #333;
   text-align: center;
   line-height: 60px;
   padding: 0;
-  height: 10%;
-  width: 100%;
+  height: 230px !important;
+  width: 100% !important;
+  border: 5px solid black;
+  background-color: blue;
 }
 .el-main {
   color: white;
   text-align: center;
-  height: 80%;
+  width: 100% !important;
+  /* height: 55% !important; */
+  border: 5px solid yellow;
+  /* overflow: auto; */
+  padding: 5px;
 }
 .el-footer {
   /* background-color: blue; */
   height: 10%;
+  width: 100%;
+  border: 5px solid brown;
+}
+#container {
+  border: 5px solid blue;
+  width: 100% !important;
+  /* height: 100%; */
 }
 </style>

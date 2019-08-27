@@ -1,5 +1,117 @@
 <template>
   <div class="index">
+    <div class="div1">
+      <div class="advert">
+        <p>
+          <a href="http://localhost:8080">
+            <img
+              src="../assets/mylogonobg.png"
+              alt=""
+            ></a>
+        </p>
+        <h3 style="text-align:center;">
+          <strong>
+            <span style="color:#373737;">分子对接专业服务</span>
+          </strong>
+        </h3>
+        <h3 style="text-align:center;">
+          <strong>
+            <span style="color:#373737;">最好的个性化服务</span>
+          </strong>
+        </h3>
+        <h3 style="text-align:center;">
+          <router-link to="contactUS">
+            <el-button
+              type="success"
+              icon="el-icon-chat-dot-round"
+            >联系我们</el-button>
+          </router-link>
+          <a>
+            <el-button
+              type="success"
+              icon="el-icon-edit-outline"
+            >咨询更多</el-button>
+          </a>
+        </h3>
+
+      </div>
+    </div>
+    <div class="div2">
+      <h1 style="text-align:center;font-size:50px;">
+        <span style="color:#373737;">主要产品服务</span>
+      </h1>
+      <div class="product">
+        <div class="product1">
+          <div class="detail1">
+            <img
+              style="width: 400px; height: 200px;padding-top:10px;"
+              src="../assets/fzdj1.jpg"
+            >
+            <div class="detail1info">
+              <h3>
+                <strong>
+                  <span style="color:#373737;">生物医药软件产品</span>
+                </strong>
+              </h3>
+              <p>自有服务器24小时计算分子对接,研究人员皆为985高校生物信息学方面的博士,经验丰富,值得信赖
+              </p>
+              <a>
+                <el-button
+                  type="success"
+                  icon="el-icon-edit-outline"
+                >咨询更多</el-button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="product2">
+          <div class="detail1">
+            <img
+              style="width: 400px; height: 200px;padding-top:10px;"
+              src="../assets/fzdj1.jpg"
+            >
+            <div class="detail1info">
+              <h3>
+                <strong>
+                  <span style="color:#373737;">生物医药软件产品</span>
+                </strong>
+              </h3>
+              <p>自有服务器24小时计算分子对接,研究人员皆为985高校生物信息学方面的博士,经验丰富,值得信赖
+              </p>
+              <a>
+                <el-button
+                  type="success"
+                  icon="el-icon-edit-outline"
+                >咨询更多</el-button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="product3">
+          <div class="detail1">
+            <img
+              style="width: 400px; height: 200px;padding-top:10px;"
+              src="../assets/fzdj1.jpg"
+            >
+            <div class="detail1info">
+              <h3>
+                <strong>
+                  <span style="color:#373737;">生物医药软件产品</span>
+                </strong>
+              </h3>
+              <p>自有服务器24小时计算分子对接,研究人员皆为985高校生物信息学方面的博士,经验丰富,值得信赖
+              </p>
+              <a>
+                <el-button
+                  type="success"
+                  icon="el-icon-edit-outline"
+                >咨询更多</el-button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,7 +130,75 @@ export default {
 <style scoped>
 .index {
   width: 100%;
-  height: 90px;
+  height: 3000px;
   align-self: center;
+  border: 5px solid green;
+}
+.div1 {
+  width: 100%;
+  height: 650px;
+  align-self: center;
+  border: 5px solid green;
+  background-image: url(../assets/background/bj1.jpg);
+}
+.div2 {
+  width: 100%;
+  height: 650px;
+  align-self: center;
+  border: 5px solid black;
+}
+.advert {
+  width: 50%;
+  height: 60%;
+  position: relative;
+  left: 25%;
+  top: 25%;
+  border: 5px solid green;
+}
+.product {
+  width: 96%;
+  height: 65%;
+  position: relative;
+  float: left;
+  left: 2%;
+  top: 2%;
+
+  border: 5px solid green;
+}
+.product1 {
+  width: 33.333%;
+  height: 95%;
+  position: relative;
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 5px solid green;
+}
+.detail1info {
+  width: 95%;
+  height: 100%;
+  position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 5px solid green;
+  color: black;
+}
+.product2 {
+  width: 33.334%;
+  height: 95%;
+  position: relative;
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 5px solid green;
+}
+.product3 {
+  width: 33.333%;
+  height: 95%;
+  position: relative;
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 5px solid green;
 }
 </style>

@@ -3,18 +3,16 @@
     <div class="topImg">
       <!-- 公司logo以及二维码 -->
       <div class="mylogo">
-        <el-image
+        <img
           style="width: 267px; height: 150px;"
-          :src="url"
-          :fit="fit"
-        ></el-image>
+          src="../assets/mylogonobg.png"
+        >
       </div>
       <div class="myName">
-        <el-image
+        <img
           style="width: 600px; height: 150px;"
-          :src="url3"
-          :fit="fit"
-        ></el-image>
+          src="../assets/myNamewhitescreennbg.png"
+        >
       </div>
       <div class="myewm">
         <el-image
