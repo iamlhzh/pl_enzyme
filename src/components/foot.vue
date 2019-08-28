@@ -1,7 +1,8 @@
 <template>
+<div class="foot">
   <div class="container">
     <div class="row">
-      <div class="row-content col-lg-2 col-sm-3 col-xs-6">
+      <div class="content">
         <h4>热门产品</h4>
         <ul>
           <li><a href="http://www.wecomput.com/product/vfruit/">vFruit</a></li>
@@ -11,7 +12,7 @@
           <li><a href="#"></a></li>
         </ul>
       </div>
-      <div class="row-content col-lg-2 col-sm-3 col-xs-6">
+      <div class="content">
         <h4>热门服务</h4>
         <ul>
           <li><a href="http://www.wecomput.com/molecular-dynamics/">分子动力学模拟</a></li>
@@ -21,7 +22,7 @@
           <li><a href="#">量化计算</a></li>
         </ul>
       </div>
-      <div class="row-content col-lg-2 col-sm-3 col-xs-6">
+      <div class="content">
         <h4>其他业务</h4>
         <ul>
           <li><a href="http://www.wecomput.com/other/hardware/">硬件解决方案</a></li>
@@ -31,16 +32,16 @@
           <li><a href="#"></a></li>
         </ul>
       </div>
-      <div class="row-content col-lg-2 col-sm-3 col-xs-6">
+      <div class="content">
         <h4>微信公众号</h4>
         <ul>
           <li><img
-              src="http://www.wecomput.com/wp-content/themes/alienship/assets/images/qrcode_120.jpg"
+              src="../assets/ewm.jpg"
               alt="二维码"
             ></li>
         </ul>
       </div>
-      <div class="row-content col-lg-4 col-sm-6 col-xs-12">
+      <div class="content">
         <h4>联系我们</h4>
         <ul>
           <li><i class="fa fa-phone fa-fw"></i> 电话：<a href="#">400-920-4059</a></li>
@@ -61,13 +62,14 @@
     </div><!-- /.row -->
     <hr>
     <div class="row">
-      <div class="footer-text centered">
+      <div class="centered">
         <p>
-          版权所有 © 2010-2017 中大唯信&nbsp; 京ICP备15050778号
-          <br>Copyright © 2010-2019 WeComput Technology Co., Ltd. All Rights Reserved.<br> </p>
+          版权所有 © 2010-2017 大工酶设计京ICP备 15050778号
+          <br>Copyright © 2010-2019 DaGong Technology Co., Ltd. All Rights Reserved.<br> </p>
       </div><!-- .footer-text -->
 
     </div><!-- .row -->
+  </div>
   </div>
 </template>
 
@@ -92,4 +94,38 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.foot{
+    background-color: #222;
+  height: 300px !important;
+  width: 100%;
+  /* border: 5px solid green; */
+  color:#777
+}
+.foot .container{
+    height: 300px !important;
+    position: relative;
+  width: 90%;
+  /* border: 5px solid yellow; */
+      margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.foot .container .row{
+    /* height: 45% !important; */
+        line-height: 1.667;
+  width: 100%;
+  /* border: 5px solid yellow; */
+}
+.content{
+  width:20%;
+  float: left;
+      position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.centered{
+  text-align: center;
+}
 </style>

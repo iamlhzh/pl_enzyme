@@ -191,22 +191,22 @@ export default {
 <style scoped>
 .index {
   width: 100%;
-  height: 3000px;
+  /* height: 3000px; */
   align-self: center;
-  border: 5px solid green;
+  /* border: 5px solid green; */
 }
 .div1 {
   width: 100%;
   height: 650px;
   align-self: center;
-  border: 5px solid green;
+  /* border: 5px solid green; */
   background-image: url(../assets/background/bj1.jpg);
 }
 .div2 {
   width: 100%;
   height: 650px;
   align-self: center;
-  border: 5px solid black;
+  /* border: 5px solid black; */
 }
 .advert {
   width: 50%;
@@ -214,7 +214,7 @@ export default {
   position: relative;
   left: 25%;
   top: 25%;
-  border: 5px solid green;
+  /* border: 5px solid green; */
 }
 .product {
   width: 96%;
@@ -224,7 +224,7 @@ export default {
   left: 2%;
   top: 2%;
 
-  border: 5px solid green;
+  /* border: 5px solid green; */
 }
 .product1 {
   width: 33.333%;
@@ -233,7 +233,7 @@ export default {
   float: left;
   padding-left: 15px;
   padding-right: 15px;
-  border: 5px solid green;
+  /* border: 5px solid green; */
 }
 .detail1info {
   width: 95%;
@@ -241,7 +241,7 @@ export default {
   position: relative;
   padding-left: 15px;
   padding-right: 15px;
-  border: 5px solid green;
+  /* border: 5px solid green; */
   color: black;
 }
 .product2 {
@@ -251,7 +251,7 @@ export default {
   float: left;
   padding-left: 15px;
   padding-right: 15px;
-  border: 5px solid green;
+  /* border: 5px solid green; */
 }
 .product3 {
   width: 33.333%;
@@ -260,6 +260,6 @@ export default {
   float: left;
   padding-left: 15px;
   padding-right: 15px;
-  border: 5px solid green;
+  /* border: 5px solid green; */
 }
 </style>

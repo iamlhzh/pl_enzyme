@@ -48,10 +48,10 @@ export default {
   created () {
   },
   mounted () {
-    var orderHight = window.screen.height
-    document.getElementById('app').style.height = orderHight - 170 + 'px'
-    var orderWidth = window.screen.width
-    document.getElementById('app').style.width = orderWidth - 10 + 'px'
+    // var orderHight = window.screen.height
+    // document.getElementById('app').style.height = orderHight - 170 + 'px'
+    // var orderWidth = window.screen.width
+    // document.getElementById('app').style.width = orderWidth - 10 + 'px'
   },
   destroyed () {
   }
@@ -71,7 +71,7 @@ export default {
   margin-top: 0px;
   background-color: white;
   overflow-y: auto;
-  border: 5px solid red;
+  /* border: 5px solid red; */
 }
 .el-header {
   color: #333;
@@ -80,25 +80,25 @@ export default {
   padding: 0;
   height: 230px !important;
   width: 100% !important;
-  border: 5px solid black;
+  /* border: 5px solid black; */
 }
 .el-main {
   color: white;
   text-align: center;
   width: 100% !important;
   /* height: 55% !important; */
-  border: 5px solid yellow;
+  /* border: 5px solid yellow; */
   /* overflow: auto; */
   padding: 5px;
 }
 .el-footer {
   /* background-color: blue; */
-  height: 500px !important;
+  height: 300px !important;
   width: 100%;
-  border: 5px solid brown;
+  /* border: 5px solid black; */
 }
 #container {
-  border: 5px solid blue;
+  /* border: 5px solid blue; */
   width: 100% !important;
   /* height: 100%; */
 }
