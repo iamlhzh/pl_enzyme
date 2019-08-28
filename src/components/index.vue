@@ -112,6 +112,67 @@
         </div>
       </div>
     </div>
+    <div class="div2">
+      <h1 style="text-align:center;font-size:50px;">
+        <span style="color:#373737;">成功案例</span>
+      </h1>
+      <div class="product">
+        <div class="product1">
+          <div class="detail1">
+            <h3>
+              <strong>
+                <span style="color:#373737;">生物医药软件产品</span>
+              </strong>
+            </h3>
+          </div>
+          <a
+            href="http://www.wecomput.com/2019/08/26/quantum_chemistry_fluorescence/"
+            class="thumbnail"
+          >
+            <img
+              style="height: 180px; width: 100%; display: block;"
+              src="http://www.wecomput.com/wp-content/uploads/2019/08/5.png"
+            >
+          </a>
+        </div>
+        <div class="product2">
+          <div class="detail1">
+            <h3>
+              <strong>
+                <span style="color:#373737;">生物医药软件产品</span>
+              </strong>
+            </h3>
+          </div>
+          <a
+            href="http://www.wecomput.com/2019/08/26/quantum_chemistry_fluorescence/"
+            class="thumbnail"
+          >
+            <img
+              style="height: 180px; width: 100%; display: block;"
+              src="http://www.wecomput.com/wp-content/uploads/2019/08/5.png"
+            >
+          </a>
+        </div>
+        <div class="product2">
+          <div class="detail1">
+            <h3>
+              <strong>
+                <span style="color:#373737;">生物医药软件产品</span>
+              </strong>
+            </h3>
+          </div>
+          <a
+            href="http://www.wecomput.com/2019/08/26/quantum_chemistry_fluorescence/"
+            class="thumbnail"
+          >
+            <img
+              style="height: 180px; width: 100%; display: block;"
+              src="http://www.wecomput.com/wp-content/uploads/2019/08/5.png"
+            >
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

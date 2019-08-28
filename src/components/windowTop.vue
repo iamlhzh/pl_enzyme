@@ -38,7 +38,7 @@
         @select="handleSelect"
         active-text-color=white
         router=true
-        background-color=black
+        background-color=#545c64
       >
         <el-menu-item index="HelloWorld">公司简介</el-menu-item>
         <el-submenu index="product">
@@ -89,9 +89,9 @@ export default {
 <style scoped>
 .windowTop {
   width: 100%;
-  /* background-image: url("../images/background/dt.gif"); */
-  /* background-repeat: no-repeat;
-  background-position: center; */
+  background-image: url("../images/background/2.jpg");
+  /* background-repeat: no-repeat; */
+  /* background-position: center; */
 }
 .windowTop .topImg {
   /* border: 1px solid red; */

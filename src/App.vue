@@ -11,9 +11,10 @@
         <router-view />
       </el-main>
       <el-footer>
-        版权所有 © 2010-2017 大工酶设计京ICP备 15050778号
+        <foot></foot>
+        <!-- 版权所有 © 2010-2017 大工酶设计京ICP备 15050778号
         <br>
-        Copyright © 2010-2019 DaGong Technology Co., Ltd. All Rights Reserved.
+        Copyright © 2010-2019 DaGong Technology Co., Ltd. All Rights Reserved. -->
       </el-footer>
     </el-container>
   </div>
@@ -21,6 +22,7 @@
 
 <script>
 import windowTop from './components/windowTop'
+import foot from './components/foot'
 export default {
   name: 'App',
   data () {
@@ -35,7 +37,8 @@ export default {
     }
   },
   components: {
-    windowTop
+    windowTop,
+    foot
   },
   methods: {
     getHeight () {
@@ -78,7 +81,6 @@ export default {
   height: 230px !important;
   width: 100% !important;
   border: 5px solid black;
-  background-color: blue;
 }
 .el-main {
   color: white;
@@ -91,7 +93,7 @@ export default {
 }
 .el-footer {
   /* background-color: blue; */
-  height: 10%;
+  height: 500px !important;
   width: 100%;
   border: 5px solid brown;
 }
