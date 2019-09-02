@@ -134,6 +134,11 @@
               src="http://www.wecomput.com/wp-content/uploads/2019/08/5.png"
             >
           </a>
+          <h5>
+            <strong>
+              <span style="color:#373737;">有些时候，我们希望容器有一个固定高度，但当其中的内容多的时候，又希望高度能够自适应，也即容器在纵向能被撑开，且如果有背景，也能够自适应。在一般情况下，使用min-height即可解决。但是广大网民的首选浏览器ie6并不支持min-height。ie7,opera,火狐没有问题。所以采用以下写法可以解决兼容性：</span>
+            </strong>
+          </h5>
         </div>
         <div class="product2">
           <div class="detail1">
@@ -152,6 +157,11 @@
               src="http://www.wecomput.com/wp-content/uploads/2019/08/5.png"
             >
           </a>
+          <h5>
+            <strong>
+              <span style="color:#373737;">有些时候，我们希望容器有一个固定高度，但当其中的内容多的时候，又希望高度能够自适应，也即容器在纵向能被撑开，且如果有背景，也能够自适应。在一般情况下，使用min-height即可解决。但是广大网民的首选浏览器ie6并不支持min-height。ie7,opera,火狐没有问题。所以采用以下写法可以解决兼容性：</span>
+            </strong>
+          </h5>
         </div>
         <div class="product2">
           <div class="detail1">
@@ -170,6 +180,11 @@
               src="http://www.wecomput.com/wp-content/uploads/2019/08/5.png"
             >
           </a>
+          <h5>
+            <strong>
+              <span style="color:#373737;">有些时候，我们希望容器有一个固定高度，但当其中的内容多的时候，又希望高度能够自适应，也即容器在纵向能被撑开，且如果有背景，也能够自适应。在一般情况下，使用min-height即可解决。但是广大网民的首选浏览器ie6并不支持min-height。ie7,opera,火狐没有问题。所以采用以下写法可以解决兼容性：</span>
+            </strong>
+          </h5>
         </div>
       </div>
     </div>

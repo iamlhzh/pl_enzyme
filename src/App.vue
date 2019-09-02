@@ -70,7 +70,7 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   background-color: white;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /* border: 5px solid red; */
 }
 .el-header {

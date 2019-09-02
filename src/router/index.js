@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import molecularDocking from '@/components/molecularDocking'
 import index from '@/components/index'
 Vue.use(Router)
 
@@ -15,6 +16,11 @@ export default new Router({
       path: '/HelloWorld',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/molecularDocking',
+      name: 'molecularDocking',
+      component: molecularDocking
     }
   ]
 })
