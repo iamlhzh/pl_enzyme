@@ -53,6 +53,7 @@ export default {
   /* background-image: url("../images/background/ma.png"); */
 }
 .hello {
+  min-height: 550px;
   width: 100%;
   height: 100%;
   /* background-image: url("../images/background/3.jpg"); */
