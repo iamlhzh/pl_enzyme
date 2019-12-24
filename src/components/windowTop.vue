@@ -18,26 +18,22 @@
         <el-image
           style="width: 151px; height: 150px;"
           :src="url2"
-          :fit="fit"
         ></el-image>
       </div>
       <div class="myewm">
         <el-image
           style="width: 151px; height: 150px;"
           :src="url2"
-          :fit="fit"
         ></el-image>
       </div>
       <!-- logo -->
     </div>
     <div class="navbar">
       <el-menu
-        :default-active="activeIndex"
         class="el-menu-demo"
         mode="horizontal"
-        @select="handleSelect"
         active-text-color=white
-        router=true
+        router
         background-color=#545c64
       >
         <el-menu-item index="HelloWorld">公司简介</el-menu-item>
@@ -47,7 +43,7 @@
           <el-menu-item index="proteinActivity">蛋白质活性</el-menu-item>
           <el-menu-item index="molecularDynamics">分子动力学分析</el-menu-item>
           <el-submenu index="2-4">
-            <template slot="drugDesign">药物设计</template>
+            <template slot="title">药物设计</template>
             <el-menu-item index="enzymeDesign">酶设计</el-menu-item>
             <el-menu-item index="drugTesting">药物检测</el-menu-item>
             <el-menu-item index="processPlanning">工艺设计</el-menu-item>
@@ -55,6 +51,7 @@
         </el-submenu>
         <el-menu-item index="case">案例分享</el-menu-item>
         <el-menu-item index="contactUS"><a>联系我们</a></el-menu-item>
+        <el-menu-item index="fileList"><a>文件中心</a></el-menu-item>
       </el-menu>
     </div>
   </div>
@@ -136,9 +133,9 @@ export default {
   padding: 0px 102px;
 }
 .windowTop .navbar .el-menu-demo .el-menu-item {
-  width: 25%;
+  width: 20%;
 }
 .windowTop .navbar .el-menu-demo .el-submenu {
-  width: 25%;
+  width: 20%;
 }
 </style>

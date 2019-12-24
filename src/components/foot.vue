@@ -49,7 +49,7 @@
             <li><i class="fa fa-map-signs fa-fw"></i> 地址：<a href="#">大连市凌水路屹馨南街60号</a></li>
           </ul>
         </div>
-      </div><!-- /.row -->
+      </div>
       <hr>
       <div class="row2">
         <div class="centered">
@@ -65,7 +65,7 @@
 
 <script>
 export default {
-  name: 'footer',
+  name: 'myFooter',
   data () {
     return {
     }
