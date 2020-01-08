@@ -83,7 +83,7 @@ export default {
   /* border: 5px solid black; */
 }
 .el-main {
-  color: white;
+  /* color: white; */
   text-align: center;
   width: 100% !important;
   /* height: 55% !important; */
