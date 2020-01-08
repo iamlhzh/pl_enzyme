@@ -91,7 +91,6 @@
               :on-progress="upLoadProgress"
               :limit="upLoadLimit"
               :file-list="form.files"
-
             >
               <el-button
                 size="small"
@@ -107,6 +106,21 @@
               >
             </el-dialog>
           </el-form-item>
+          <el-form-item
+            label=""
+            prop=""
+          >
+          <div style="height:100px">
+            <div v-show="progressShow">{{upLoadRate}}</div>
+            <div v-show="progressShow">{{loaded}}/{{total}}</div>
+            <el-progress
+              style="width:80%;margin-left:50px"
+              :percentage="percentage"
+              :color="colors"
+              v-show="progressShow"
+            ></el-progress>
+            </div>
+          </el-form-item>
           <el-form-item label-width="200px">
             <el-button @click="dialogVisible = false">取 消</el-button>
             <el-button
@@ -115,6 +129,7 @@
             >确 定</el-button>
           </el-form-item>
         </el-form>
+
       </div>
     </el-dialog>
   </div>
@@ -158,12 +173,26 @@ export default {
       data: [],
       options: [],
       dialogVisible: false,
-      imgDialogVisible:false,
-      dialogImageUrl:'',
+      imgDialogVisible: false,
+      dialogImageUrl: '',
       defaultProps: {
         children: 'childrenFileList',
         label: 'fileName'
-      }
+      },
+      percentage: 0,
+      colors: [
+        { color: '#f56c6c', percentage: 20 },
+        { color: '#e6a23c', percentage: 40 },
+        { color: '#5cb87a', percentage: 60 },
+        { color: '#1989fa', percentage: 80 },
+        { color: '#6f7ad3', percentage: 100 }
+      ],
+      progressShow: false,
+      total: '',
+      loaded: '',
+      upLoadRate:'',
+      lastloaded:0
+
     }
   },
   methods: {
@@ -182,6 +211,7 @@ export default {
         console.log(response)
         if (response.data.code === '000') {
           this.dialogVisible = false
+          this.percentage = 0;
           this.$message(response.data.msg)
           this.getFileList()
         }
@@ -193,7 +223,57 @@ export default {
           this.form.fileList.append('fileDirectory', this.form.fileDirectory)
           console.log(this.form.fileList)
           const config = { headers: { 'Content-Type': 'multipart/form-data' } }
-          this.axios.post(process.env.API_ROOT + 'upLoad/upLoadFileList', this.form.fileList, config).then((response) => {
+          this.progressShow = true
+          this.axios.post(process.env.API_ROOT + 'upLoad/upLoadFileList', this.form.fileList,
+            {
+              "Content-Type": 'multipart/form-data',
+              onUploadProgress: progressEvent => {
+                console.log(progressEvent);
+                console.log(progressEvent.lengthComputable);
+                if (progressEvent.lengthComputable) {
+                  let val = parseInt(
+                    (
+                      (progressEvent.loaded / progressEvent.total) * 100
+                    ).toFixed(0)
+                  );
+                  console.log(new Date().getTime())
+                  var all=progressEvent.total
+                  if(all<1024){
+                    this.total=all+'B'
+                  }else if(all<1024*1024){
+                    this.total=all/1024+'KB'
+                  }else if(all<1024*1024*1024){
+                    this.total=all/1024/1024+'MB'
+                  }else{
+                    this.total=all/1024/1024/1024+'GB'
+                  }
+                  var already=progressEvent.loaded
+                  if(already<1024){
+                    this.loaded=already+'B'
+                  }else if(already<1024*1024){
+                    this.loaded=already/1024+'KB'
+                  }else if(already<1024*1024*1024){
+                    this.loaded=already/1024/1024+'MB'
+                  }else{
+                    this.loaded=already/1024/1024/1024+'GB'
+                  }
+                  var uploadNow=(already-this.lastloaded)*10;
+                  if(uploadNow<1024){
+                    this.upLoadRate=uploadNow+'B/s'
+                  }else if(uploadNow<1024*1024){
+                    this.upLoadRate=uploadNow/1024+'KB/s'
+                  }else if(uploadNow<1024*1024*1024){
+                    this.upLoadRate=uploadNow/1024/1024+'MB/s'
+                  }else{
+                    this.upLoadRate=uploadNow/1024/1024/1024+'GB/s'
+                  }
+                  this.lastloaded=progressEvent.loaded;
+                  console.log(val);
+                  this.percentage = val
+                }
+              }
+            }
+          ).then((response) => {
             console.log(response)
             if (response.data.code === '000') {
               this.dialogVisible = false
@@ -211,9 +291,11 @@ export default {
       this.dialogVisible = false
       this.form.fileList = new FormData()
       this.form.files = []
+      this.progressShow=false
       console.log('upLoadDialogClose')
     },
     openUpLoadDialog () {
+      this.percentage = 0
       this.dialogVisible = true
       this.getDirectoryList()
     },
@@ -253,8 +335,8 @@ export default {
       console.log(1)
     },
     handlePreview (file) {
-      this.dialogImageUrl=file.url
-      this.imgDialogVisible=true
+      this.dialogImageUrl = file.url
+      this.imgDialogVisible = true
       console.log(file)
     },
     handleExceed (files, fileList) {
@@ -262,8 +344,8 @@ export default {
       var all = files.length + fileList.length
       this.$message.warning('当前限制选择 ' + this.upLoadLimit + ' 个文件，本次选择了 ' + files.length + ' 个文件，共选择了 ' + all + ' 个文件')
     },
-    upLoadProgress(event, file, fileList){
-      
+    upLoadProgress (event, file, fileList) {
+
     },
     beforeRemove (file, fileList) {
       console.log(4)
@@ -340,6 +422,6 @@ export default {
 .uploadDialog {
   /* border: 1px solid red; */
   width: 100%;
-  height: 400px;
+  height: 450px;
 }
 </style>
