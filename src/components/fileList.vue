@@ -110,15 +110,17 @@
             label=""
             prop=""
           >
-          <div style="height:100px">
-            <div v-show="progressShow">{{upLoadRate}}</div>
-            <div v-show="progressShow">{{loaded}}/{{total}}</div>
-            <el-progress
-              style="width:80%;margin-left:50px"
-              :percentage="percentage"
-              :color="colors"
-              v-show="progressShow"
-            ></el-progress>
+            <div style="height:200px">
+              <div v-show="progressShow">{{showUpLoadRate}}</div>
+              <div v-show="progressShow">{{showLoaded}}/{{showTotal}}</div>
+              <div v-show="progressShow">已经上传时间:{{showAlreadyTime}}</div>
+              <div v-show="progressShow">预计还要时间:{{showLeftTime}}</div>
+              <el-progress
+                style="width:80%;margin-left:50px"
+                :percentage="percentage"
+                :color="colors"
+                v-show="progressShow"
+              ></el-progress>
             </div>
           </el-form-item>
           <el-form-item label-width="200px">
@@ -188,10 +190,19 @@ export default {
         { color: '#6f7ad3', percentage: 100 }
       ],
       progressShow: false,
-      total: '',
-      loaded: '',
-      upLoadRate:'',
-      lastloaded:0
+      total: 0,
+      loaded: 0,
+      upLoadRate: 0,
+      lastloaded: 0,
+      lastTime: 0,
+      initialTime: 0,
+      alreadyTime: 0,
+      leftTime: 0,
+      showTotal: '',
+      showLoaded: '',
+      showAlreadyTime: '',
+      showLeftTime: '',
+      showUpLoadRate: ''
 
     }
   },
@@ -224,6 +235,8 @@ export default {
           console.log(this.form.fileList)
           const config = { headers: { 'Content-Type': 'multipart/form-data' } }
           this.progressShow = true
+          this.lastTime = new Date().getTime();
+          this.initialTime = new Date().getTime();
           this.axios.post(process.env.API_ROOT + 'upLoad/upLoadFileList', this.form.fileList,
             {
               "Content-Type": 'multipart/form-data',
@@ -237,37 +250,76 @@ export default {
                     ).toFixed(0)
                   );
                   console.log(new Date().getTime())
-                  var all=progressEvent.total
-                  if(all<1024){
-                    this.total=all+'B'
-                  }else if(all<1024*1024){
-                    this.total=all/1024+'KB'
-                  }else if(all<1024*1024*1024){
-                    this.total=all/1024/1024+'MB'
-                  }else{
-                    this.total=all/1024/1024/1024+'GB'
+                  //文件整体大小B
+                  var all = progressEvent.total
+                  //已经上传大小B
+                  var already = progressEvent.loaded
+                  //当前时间ms
+                  var nowTime = new Date().getTime();
+                  //与上次间隔时间ms
+                  var intervalTime = nowTime - this.lastTime;
+                  //上传速度B/ms相当于KB/s
+                  if (intervalTime > 0) {
+                    var uploadNow = (already - this.lastloaded) / intervalTime;
+                  } else {
+                    var uploadNow = (already - this.lastloaded) / 1;
                   }
-                  var already=progressEvent.loaded
-                  if(already<1024){
-                    this.loaded=already+'B'
-                  }else if(already<1024*1024){
-                    this.loaded=already/1024+'KB'
-                  }else if(already<1024*1024*1024){
-                    this.loaded=already/1024/1024+'MB'
-                  }else{
-                    this.loaded=already/1024/1024/1024+'GB'
+                  //重新赋值上次时间,留待下次使用ms
+                  this.lastTime = nowTime;
+                  //已经上传时间ms
+                  this.alreadyTime = nowTime - this.initialTime;
+                  //剩余时间ms
+                  if (uploadNow > 0) {
+                    this.leftTime = (all - already) / uploadNow
+                  } else {
+                    this.leftTime = (all - already) / 1
                   }
-                  var uploadNow=(already-this.lastloaded)*10;
-                  if(uploadNow<1024){
-                    this.upLoadRate=uploadNow+'B/s'
-                  }else if(uploadNow<1024*1024){
-                    this.upLoadRate=uploadNow/1024+'KB/s'
-                  }else if(uploadNow<1024*1024*1024){
-                    this.upLoadRate=uploadNow/1024/1024+'MB/s'
-                  }else{
-                    this.upLoadRate=uploadNow/1024/1024/1024+'GB/s'
+                  //对已经上传时间做处理
+                  this.showAlreadyTime = this.dealTime(this.alreadyTime)
+                  this.showLeftTime = this.dealTime(this.leftTime)
+                  //对剩余时间做处理
+                  //对显示文件大小处理
+                  if (all < 1024) {
+                    this.total = all
+                    this.showTotal = this.total.toFixed(2) + 'B'
+                  } else if (all < 1024 * 1024) {
+                    this.total = all / 1024
+                    this.showTotal = this.total.toFixed(2) + 'KB'
+                  } else if (all < 1024 * 1024 * 1024) {
+                    this.total = all / 1024 / 1024
+                    this.showTotal = this.total.toFixed(2) + 'MB'
+                  } else {
+                    this.total = all / 1024 / 1024 / 1024
+                    this.showTotal = this.total.toFixed(2) + 'GB'
                   }
-                  this.lastloaded=progressEvent.loaded;
+                  //对已经上传大小做处理
+                  if (already < 1024) {
+                    this.loaded = already
+                    this.showLoaded = this.loaded.toFixed(2) + 'B'
+                  } else if (already < 1024 * 1024) {
+                    this.loaded = already / 1024
+                    this.showLoaded = this.loaded.toFixed(2) + 'KB'
+                  } else if (already < 1024 * 1024 * 1024) {
+                    this.loaded = already / 1024 / 1024
+                    this.showLoaded = this.loaded.toFixed(2) + 'MB'
+                  } else {
+                    this.loaded = already / 1024 / 1024 / 1024
+                    this.showLoaded = this.loaded.toFixed(2) + 'GB'
+                  }
+                  if (uploadNow < 1) {
+                    this.upLoadRate = uploadNow * 1024
+                    this.showUpLoadRate = this.upLoadRate.toFixed(2) + 'B/s'
+                  } else if (uploadNow < 1024) {
+                    this.upLoadRate = uploadNow
+                    this.showUpLoadRate = this.upLoadRate.toFixed(2) + 'KB/s'
+                  } else if (uploadNow < 1024 * 1024) {
+                    this.upLoadRate = uploadNow / 1024
+                    this.showUpLoadRate = this.upLoadRate.toFixed(2) + 'MB/s'
+                  } else {
+                    this.upLoadRate = uploadNow / 1024 / 1024
+                    this.showUpLoadRate = this.upLoadRate.toFixed(2) + 'GB/s'
+                  }
+                  this.lastloaded = progressEvent.loaded;
                   console.log(val);
                   this.percentage = val
                 }
@@ -286,12 +338,38 @@ export default {
         }
       })
     },
+    dealTime (time) {//time是毫秒
+      var returnTimeString = ''
+      if (time < 1000) {//小于1s
+        var ms=time.toFixed(2)
+        returnTimeString = ms + 'ms'
+      } else if (time < 1000 * 60) {//小于1min
+        var sec = (time / 1000).toFixed(2)
+        returnTimeString = sec + 's'
+      } else if (time < 1000 * 60 * 60) {//小于1h
+        var min = Math.floor(time / 1000 / 60)
+        var sec = (time / 1000 - min * 60).toFixed(2)
+        returnTimeString = min + 'min' + sec + 's'
+      } else if (time < 1000 * 60 * 60 * 24) {//小于1d
+        var h = Math.floor(time / 1000 / 60 / 60)
+        var min = Math.floor(time / 1000 / 60 - h * 60)
+        var sec = (time / 1000 - h * 60 * 60 - min * 60).toFixed(2)
+        returnTimeString = h + 'hour' + min + 'min' + sec + 's'
+      } else {
+        var d = Math.floor(time / 1000 / 60 / 60 / 24)
+        var h = Math.floor(time / 1000 / 60 / 60 - d * 24)
+        var min = Math.floor(time / 1000 / 60 - h * 60 - d * 24 * 60)
+        var sec = (time / 1000 - d * 24 * 60 * 60 - h * 60 * 60 - min * 60).toFixed(2)
+        returnTimeString = d + 'day' + h + 'hour' + min + 'min' + sec + 's'
+      }
+      return returnTimeString;
+    },
     upLoadDialogClose () {
       this.$refs.upload.clearFiles()
       this.dialogVisible = false
       this.form.fileList = new FormData()
       this.form.files = []
-      this.progressShow=false
+      this.progressShow = false
       console.log('upLoadDialogClose')
     },
     openUpLoadDialog () {
@@ -420,8 +498,8 @@ export default {
   padding-right: 8px;
 }
 .uploadDialog {
-  /* border: 1px solid red; */
+  border: 1px solid red;
   width: 100%;
-  height: 450px;
+  height: 550px;
 }
 </style>
