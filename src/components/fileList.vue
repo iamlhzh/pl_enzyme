@@ -17,7 +17,11 @@
           class="custom-tree-node"
           slot-scope="{ node, data }"
         >
-          <span>{{ node.label }}</span>
+          <span>{{ node.label }} &nbsp;&nbsp;&nbsp;<span
+              style="color:blue"
+              v-show="!data.isDirectory"
+            >{{ data.fileSize | fileSizeFormat }}</span></span>
+
           <span>
             <el-button
               v-if="!data.isDirectory"
@@ -106,23 +110,12 @@
               >
             </el-dialog>
           </el-form-item>
-          <el-form-item
+          <!-- <el-form-item
             label=""
             prop=""
           >
-            <div style="height:200px">
-              <div v-show="progressShow">{{showUpLoadRate}}</div>
-              <div v-show="progressShow">{{showLoaded}}/{{showTotal}}</div>
-              <div v-show="progressShow">已经上传时间:{{showAlreadyTime}}</div>
-              <div v-show="progressShow">预计还要时间:{{showLeftTime}}</div>
-              <el-progress
-                style="width:80%;margin-left:50px"
-                :percentage="percentage"
-                :color="colors"
-                v-show="progressShow"
-              ></el-progress>
-            </div>
-          </el-form-item>
+
+          </el-form-item> -->
           <el-form-item label-width="200px">
             <el-button @click="dialogVisible = false">取 消</el-button>
             <el-button
@@ -134,12 +127,51 @@
 
       </div>
     </el-dialog>
+    <el-dialog
+      title="文件上传进程"
+      :visible.sync="upLoadProgressdialogVisible"
+      width="50%"
+      @close="upLoadProgressDialogClose()"
+    >
+      <div style="height:200px">
+        <div v-show="progressShow">{{showUpLoadRate}}</div>
+        <div v-show="progressShow">{{showLoaded}}/{{showTotal}}</div>
+        <div v-show="progressShow">已经上传时间:{{showAlreadyTime}}</div>
+        <div v-show="progressShow">预计还要时间:{{showLeftTime}}</div>
+        <el-progress
+          style="width:80%;margin-left:50px"
+          :percentage="percentage"
+          :color="colors"
+          v-show="progressShow"
+        ></el-progress>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
 import * as FileSaver from 'file-saver'
+import Vue from 'vue';
+// 定义一个 Vue 全局的过滤器，名字叫做  msgFormat
+Vue.filter('fileSizeFormat', function (size) {
+  var returnSizeString = '';
+  var fileSize = 0;
+  if (size < 1024) {
+    fileSize = size
+    returnSizeString = fileSize.toFixed(2) + 'B'
+  } else if (size < 1024 * 1024) {
+    fileSize = size / 1024
+    returnSizeString = fileSize.toFixed(2) + 'KB'
+  } else if (size < 1024 * 1024 * 1024) {
+    fileSize = size / 1024 / 1024
+    returnSizeString = fileSize.toFixed(2) + 'MB'
+  } else {
+    fileSize = size / 1024 / 1024 / 1024
+    returnSizeString = fileSize.toFixed(2) + 'GB'
+  }
+  return returnSizeString;
+})
 export default {
   data () {
     var validatefileDirectory = (rule, value, callback) => {
@@ -202,7 +234,8 @@ export default {
       showLoaded: '',
       showAlreadyTime: '',
       showLeftTime: '',
-      showUpLoadRate: ''
+      showUpLoadRate: '0B/s',
+      upLoadProgressdialogVisible: false
 
     }
   },
@@ -231,6 +264,8 @@ export default {
     uploadFileList (form) {
       this.$refs[form].validate(valid => {
         if (valid) {
+          this.upLoadProgressdialogVisible = true
+          this.dialogVisible = false
           this.form.fileList.append('fileDirectory', this.form.fileDirectory)
           console.log(this.form.fileList)
           const config = { headers: { 'Content-Type': 'multipart/form-data' } }
@@ -279,34 +314,38 @@ export default {
                   this.showLeftTime = this.dealTime(this.leftTime)
                   //对剩余时间做处理
                   //对显示文件大小处理
-                  if (all < 1024) {
-                    this.total = all
-                    this.showTotal = this.total.toFixed(2) + 'B'
-                  } else if (all < 1024 * 1024) {
-                    this.total = all / 1024
-                    this.showTotal = this.total.toFixed(2) + 'KB'
-                  } else if (all < 1024 * 1024 * 1024) {
-                    this.total = all / 1024 / 1024
-                    this.showTotal = this.total.toFixed(2) + 'MB'
-                  } else {
-                    this.total = all / 1024 / 1024 / 1024
-                    this.showTotal = this.total.toFixed(2) + 'GB'
-                  }
+                  this.showTotal = this.dealFileSize(all);
+                  // if (all < 1024) {
+                  //   this.total = all
+                  //   this.showTotal = this.total.toFixed(2) + 'B'
+                  // } else if (all < 1024 * 1024) {
+                  //   this.total = all / 1024
+                  //   this.showTotal = this.total.toFixed(2) + 'KB'
+                  // } else if (all < 1024 * 1024 * 1024) {
+                  //   this.total = all / 1024 / 1024
+                  //   this.showTotal = this.total.toFixed(2) + 'MB'
+                  // } else {
+                  //   this.total = all / 1024 / 1024 / 1024
+                  //   this.showTotal = this.total.toFixed(2) + 'GB'
+                  // }
                   //对已经上传大小做处理
-                  if (already < 1024) {
-                    this.loaded = already
-                    this.showLoaded = this.loaded.toFixed(2) + 'B'
-                  } else if (already < 1024 * 1024) {
-                    this.loaded = already / 1024
-                    this.showLoaded = this.loaded.toFixed(2) + 'KB'
-                  } else if (already < 1024 * 1024 * 1024) {
-                    this.loaded = already / 1024 / 1024
-                    this.showLoaded = this.loaded.toFixed(2) + 'MB'
-                  } else {
-                    this.loaded = already / 1024 / 1024 / 1024
-                    this.showLoaded = this.loaded.toFixed(2) + 'GB'
-                  }
-                  if (uploadNow < 1) {
+                  this.showLoaded = this.dealFileSize(already);
+                  // if (already < 1024) {
+                  //   this.loaded = already
+                  //   this.showLoaded = this.loaded.toFixed(2) + 'B'
+                  // } else if (already < 1024 * 1024) {
+                  //   this.loaded = already / 1024
+                  //   this.showLoaded = this.loaded.toFixed(2) + 'KB'
+                  // } else if (already < 1024 * 1024 * 1024) {
+                  //   this.loaded = already / 1024 / 1024
+                  //   this.showLoaded = this.loaded.toFixed(2) + 'MB'
+                  // } else {
+                  //   this.loaded = already / 1024 / 1024 / 1024
+                  //   this.showLoaded = this.loaded.toFixed(2) + 'GB'
+                  // }
+                  if (uploadNow < 0) {
+                    this.showUpLoadRate = '0B/s'
+                  } else if (uploadNow < 1) {
                     this.upLoadRate = uploadNow * 1024
                     this.showUpLoadRate = this.upLoadRate.toFixed(2) + 'B/s'
                   } else if (uploadNow < 1024) {
@@ -322,13 +361,15 @@ export default {
                   this.lastloaded = progressEvent.loaded;
                   console.log(val);
                   this.percentage = val
+
                 }
               }
             }
           ).then((response) => {
             console.log(response)
             if (response.data.code === '000') {
-              this.dialogVisible = false
+
+              this.upLoadProgressdialogVisible = false
               this.$message(response.data.msg)
               this.getFileList()
             }
@@ -338,10 +379,28 @@ export default {
         }
       })
     },
+    dealFileSize (size) {
+      var returnSizeString = '';
+      var fileSize = 0;
+      if (size < 1024) {
+        fileSize = size
+        returnSizeString = fileSize.toFixed(2) + 'B'
+      } else if (size < 1024 * 1024) {
+        fileSize = size / 1024
+        returnSizeString = fileSize.toFixed(2) + 'KB'
+      } else if (size < 1024 * 1024 * 1024) {
+        fileSize = size / 1024 / 1024
+        returnSizeString = fileSize.toFixed(2) + 'MB'
+      } else {
+        fileSize = size / 1024 / 1024 / 1024
+        returnSizeString = fileSize.toFixed(2) + 'GB'
+      }
+      return returnSizeString;
+    },
     dealTime (time) {//time是毫秒
       var returnTimeString = ''
       if (time < 1000) {//小于1s
-        var ms=time.toFixed(2)
+        var ms = time.toFixed(2)
         returnTimeString = ms + 'ms'
       } else if (time < 1000 * 60) {//小于1min
         var sec = (time / 1000).toFixed(2)
@@ -369,8 +428,10 @@ export default {
       this.dialogVisible = false
       this.form.fileList = new FormData()
       this.form.files = []
-      this.progressShow = false
       console.log('upLoadDialogClose')
+    },
+    upLoadProgressDialogClose () {
+      this.progressShow = false
     },
     openUpLoadDialog () {
       this.percentage = 0
@@ -441,6 +502,7 @@ export default {
       this.axios.get(process.env.API_ROOT + 'fileList/getFileList').then((response) => {
         console.log(response)
         if (response.data.code === '000') {
+
           this.data = response.data.obj
         }
       })
@@ -458,24 +520,22 @@ export default {
     },
     downLoadFile (data) {
       var path = encodeURI(data.fileAbsolutePath)
-      var fileName = data.fileName
-      this.axios({
-        method: 'POST',
-        url: process.env.API_ROOT + 'file/downfileByAbsolutePath?fileAbsolutePath=' + path,
-        responseType: 'blob'
-      })
-        .then(res => {
-          console.log(res)
-          let blob = new Blob([res.data])
-          FileSaver.saveAs(blob, fileName)
-        })
-        .catch(err => {
-          this.$message('请求失败！')
-          console.log(err)
-        })
-      // this.axios.get(process.env.API_ROOT + 'file/downfile?fileName=1.txt').then((response) => {
-
+      window.location.href = process.env.API_ROOT + 'file/downfileByAbsolutePath?fileAbsolutePath=' + path
+      // var fileName = data.fileName
+      // this.axios({
+      //   method: 'POST',
+      //   url: process.env.API_ROOT + 'file/downfileByAbsolutePath?fileAbsolutePath=' + path,
+      //   responseType: 'blob'
       // })
+      //   .then(res => {
+      //     console.log(res)
+      //     let blob = new Blob([res.data])
+      //     FileSaver.saveAs(blob, fileName)
+      //   })
+      //   .catch(err => {
+      //     this.$message('请求失败！')
+      //     console.log(err)
+      //   })
     }
   },
   created () {
@@ -498,8 +558,8 @@ export default {
   padding-right: 8px;
 }
 .uploadDialog {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 100%;
-  height: 550px;
+  height: 350px;
 }
 </style>
