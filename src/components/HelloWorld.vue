@@ -1,10 +1,10 @@
 <template>
   <div class="hello">
-    <h1 align=center>HomePage of Baymax</h1>
-    <el-carousel
+    <!-- <el-carousel
       type="card"
       :interval="1000"
       arrow="always"
+      height="800px"
     >
       <el-carousel-item
         v-for="item in lunboList"
@@ -17,7 +17,7 @@
           ></el-image>
         </el-link>
       </el-carousel-item>
-    </el-carousel>
+    </el-carousel> -->
   </div>
 </template>
 

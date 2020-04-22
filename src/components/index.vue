@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <div class="div1">
+    <!-- <div class="div1">
       <div class="advert">
         <p>
           <a href="http://localhost:8080">
@@ -187,7 +187,7 @@
           </h5>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

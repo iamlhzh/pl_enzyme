@@ -2,12 +2,12 @@
   <div class="windowTop">
     <div class="topImg">
       <!-- 公司logo以及二维码 -->
-      <div class="mylogo">
+      <!-- <div class="mylogo">
         <img
           style="width: 267px; height: 150px;"
           src="../assets/mylogonobg.png"
         >
-      </div>
+      </div> -->
       <div class="myName">
         <img
           style="width: 600px; height: 150px;"
@@ -28,7 +28,33 @@
       </div>
       <!-- logo -->
     </div>
-    <div class="navbar">
+        <div class="navbar">
+      <el-menu
+        class="el-menu-demo"
+        mode="horizontal"
+        active-text-color=white
+        router
+        background-color=#545c64
+      >
+        <el-menu-item index="HelloWorld">页面1</el-menu-item>
+        <el-submenu index="product">
+          <template slot="title">页面2</template>
+          <el-menu-item index="molecularDocking">分支1</el-menu-item>
+          <el-menu-item index="proteinActivity">分支2</el-menu-item>
+          <el-menu-item index="molecularDynamics">分支3</el-menu-item>
+          <el-submenu index="2-4">
+            <template slot="title">页面3</template>
+            <el-menu-item index="enzymeDesign">页面4</el-menu-item>
+            <el-menu-item index="drugTesting">页面5</el-menu-item>
+            <el-menu-item index="processPlanning">页面6</el-menu-item>
+          </el-submenu>
+        </el-submenu>
+        <el-menu-item index="case">页面7</el-menu-item>
+        <el-menu-item index="contactUS"><a>页面8</a></el-menu-item>
+        <el-menu-item index="fileList"><a>文件</a></el-menu-item>
+      </el-menu>
+    </div>
+    <!-- <div class="navbar">
       <el-menu
         class="el-menu-demo"
         mode="horizontal"
@@ -53,7 +79,7 @@
         <el-menu-item index="contactUS"><a>联系我们</a></el-menu-item>
         <el-menu-item index="fileList"><a>文件中心</a></el-menu-item>
       </el-menu>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -119,7 +145,7 @@ export default {
   width: 600px;
   height: 150px;
   float: left;
-  margin-left: 120px;
+  margin-left: 420px;
 }
 .windowTop .navbar {
   /* border: 1px solid blue; */
