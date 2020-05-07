@@ -2,7 +2,7 @@
   <div class="foot">
     <div class="container">
       <div class="row">
-        <div class="content">
+        <!-- <div class="content">
           <h4>热门产品</h4>
           <ul>
             <li><a href="http://www.wecomput.com/product/vfruit/">vFruit</a></li>
@@ -48,14 +48,15 @@
             <li><i class="fa fa-envelope fa-fw"></i> 邮箱：<a href="mailto:info@wecomput.com">enzyme@163.com</a></li>
             <li><i class="fa fa-map-signs fa-fw"></i> 地址：<a href="#">大连市凌水路屹馨南街60号</a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
       <hr>
       <div class="row2">
         <div class="centered">
           <p>
-            版权所有 © 2010-2017 大工酶设计京ICP备 15050778号
-            <br>Copyright © 2010-2019 DaGong Technology Co., Ltd. All Rights Reserved.<br> </p>
+            版权所有 © lhzh | 辽ICP备20000981号-1
+            <!-- <br>Copyright © 2010-2019 DaGong Technology Co., Ltd. All Rights Reserved.<br>  -->
+            </p>
         </div><!-- .footer-text -->
 
       </div><!-- .row -->

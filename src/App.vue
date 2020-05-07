@@ -11,7 +11,7 @@
         <router-view />
       </el-main>
       <el-footer>
-        <!-- <foot></foot> -->
+        <foot></foot>
         <!-- 版权所有 © 2010-2017 大工酶设计京ICP备 15050778号
         <br>
         Copyright © 2010-2019 DaGong Technology Co., Ltd. All Rights Reserved. -->
