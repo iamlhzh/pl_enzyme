@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import molecularDocking from '@/components/molecularDocking'
 import fileList from '@/components/fileList'
+import schoolList from '@/components/schoolList'
+import courseList from '@/components/courseList'
 import index from '@/components/index'
 Vue.use(Router)
 
@@ -27,6 +29,16 @@ export default new Router({
       path: '/fileList',
       name: 'fileList',
       component: fileList
+    },
+    {
+      path: '/schoolList',
+      name: 'schoolList',
+      component: schoolList
+    },
+    {
+      path: '/courseList',
+      name: 'courseList',
+      component: courseList
     }
   ]
 })
