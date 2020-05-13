@@ -5,6 +5,7 @@ import molecularDocking from '@/components/molecularDocking'
 import fileList from '@/components/fileList'
 import schoolList from '@/components/schoolList'
 import courseList from '@/components/courseList'
+import playVideo from '@/components/playVideo'
 import index from '@/components/index'
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
       path: '/courseList',
       name: 'courseList',
       component: courseList
+    },
+    {
+      path: '/playVideo',
+      name: 'playVideo',
+      component: playVideo
     }
   ]
 })
