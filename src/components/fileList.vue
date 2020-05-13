@@ -11,7 +11,6 @@
         :data="data"
         :props="defaultProps"
         @node-click="handleNodeClick"
-        default-expand-all
       >
         <span
           class="custom-tree-node"
