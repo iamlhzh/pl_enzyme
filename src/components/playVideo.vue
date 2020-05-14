@@ -21,8 +21,8 @@ export default {
 
   },
   created () {
-    this.videoInfo.videoName = this.$route.params.videoName
-    this.videoInfo.videoUrl = this.$route.params.videoUrl
+    this.videoInfo.videoName = this.$route.query.videoName
+    this.videoInfo.videoUrl = this.$route.query.videoUrl
   }
 }
 </script>

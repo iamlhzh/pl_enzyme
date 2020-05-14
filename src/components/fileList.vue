@@ -548,12 +548,9 @@ export default {
       console.log(data)
       this.$router.push({
         name: 'playVideo',
-        params: {
+        query: {
           videoName: data.fileName,
           videoUrl:data.fileUrl
-        },
-        query: {
-          adminLte: 'no'
         }
       })
     }
