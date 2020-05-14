@@ -210,20 +210,20 @@ export default {
   align-self: center;
   /* border: 5px solid green; */
 }
-.div1 {
+.index .div1 {
   width: 100%;
   height: 650px;
   align-self: center;
   /* border: 5px solid green; */
   background-image: url(../assets/background/bj1.jpg);
 }
-.div2 {
+.index .div2 {
   width: 100%;
   height: 650px;
   align-self: center;
   /* border: 5px solid black; */
 }
-.advert {
+.index .advert {
   width: 50%;
   height: 60%;
   position: relative;
@@ -231,7 +231,7 @@ export default {
   top: 25%;
   /* border: 5px solid green; */
 }
-.product {
+.index .product {
   width: 96%;
   height: 65%;
   position: relative;
@@ -241,7 +241,7 @@ export default {
 
   /* border: 5px solid green; */
 }
-.product1 {
+.index .product1 {
   width: 33.333%;
   height: 95%;
   position: relative;
@@ -250,7 +250,7 @@ export default {
   padding-right: 15px;
   /* border: 5px solid green; */
 }
-.detail1info {
+.index .detail1info {
   width: 95%;
   height: 100%;
   position: relative;
@@ -259,7 +259,7 @@ export default {
   /* border: 5px solid green; */
   color: black;
 }
-.product2 {
+.index .product2 {
   width: 33.334%;
   height: 95%;
   position: relative;
@@ -268,7 +268,7 @@ export default {
   padding-right: 15px;
   /* border: 5px solid green; */
 }
-.product3 {
+.index .product3 {
   width: 33.333%;
   height: 95%;
   position: relative;

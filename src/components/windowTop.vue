@@ -51,7 +51,7 @@
         </el-submenu>
         <el-menu-item index="case">页面7</el-menu-item>
         <el-menu-item index="schoolList"><a>学校</a></el-menu-item>
-        <el-menu-item index="fileList"><a>文件</a></el-menu-item>
+        <el-menu-item index="/"><a>文件</a></el-menu-item>
       </el-menu>
     </div>
     <!-- <div class="navbar">

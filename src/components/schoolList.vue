@@ -55,17 +55,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-  .bottom {
+  .schoolList .bottom {
     margin-top: 3px;
     line-height: 12px;
   }
 
-  .button {
+  .schoolList .button {
     padding: 0;
     float: right;
   }
 
-  .image {
+  .schoolList .image {
     /* width: 164px;
     height: 60px; */
     display: inline;
