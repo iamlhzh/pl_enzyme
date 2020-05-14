@@ -1,7 +1,7 @@
 <template>
   <div class="playVideo">
     <h1 ref="title" id="title">{{videoInfo.videoName}}</h1>
-    <video width="80%" controls>
+    <video class="videoClass"  controls>
   <source :src="videoInfo.videoUrl" type="video/mp4">
 </video>
   </div>
@@ -33,4 +33,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.videoClass{
+width:80%;
+max-width: 1000px;
+max-height:560px;
+}
 </style>
