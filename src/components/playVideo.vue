@@ -1,7 +1,7 @@
 <template>
   <div class="playVideo">
-    <h1>{{videoInfo.videoName}}</h1>
-    <video width="320" height="240" controls>
+    <h1 ref="title" id="title">{{videoInfo.videoName}}</h1>
+    <video width="80%" controls>
   <source :src="videoInfo.videoUrl" type="video/mp4">
 </video>
   </div>
@@ -18,11 +18,15 @@ export default {
     }
   },
   methods: {
+    goToTitle () {
+      document.documentElement.scrollTop = 260
+    }
 
   },
   created () {
     this.videoInfo.videoName = this.$route.query.videoName
     this.videoInfo.videoUrl = this.$route.query.videoUrl
+    this.goToTitle()
   }
 }
 </script>
