@@ -34,8 +34,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .videoClass{
-width:80%;
-max-width: 1000px;
-max-height:560px;
+/* width:100%; */
+max-width: 1250px;
+max-height:666px;
 }
 </style>
