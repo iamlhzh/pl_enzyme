@@ -30,6 +30,14 @@
             >
               下载
             </el-button>
+            <el-button
+              v-if="!data.isDirectory && data.suffix === 'mp4'"
+              type="text"
+              size="mini"
+              @click="() => playFile(data)"
+            >
+              播放
+            </el-button>
             <!-- <el-button
             type="text"
             size="mini"
@@ -535,6 +543,19 @@ export default {
       //     this.$message('请求失败！')
       //     console.log(err)
       //   })
+    },
+      playFile (data) {
+      console.log(data)
+      this.$router.push({
+        name: 'playVideo',
+        params: {
+          videoName: data.fileName,
+          videoUrl:data.fileUrl
+        },
+        query: {
+          adminLte: 'no'
+        }
+      })
     }
   },
   created () {

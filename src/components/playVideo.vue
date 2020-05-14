@@ -1,7 +1,8 @@
 <template>
   <div class="playVideo">
+    <h1>{{videoInfo.videoName}}</h1>
     <video width="320" height="240" controls>
-  <source src="http://yuan-saas-oss-test.oss-cn-beijing.aliyuncs.com/456429335813947392.mp4" type="video/mp4">
+  <source :src="videoInfo.videoUrl" type="video/mp4">
 </video>
   </div>
 </template>
@@ -10,12 +11,18 @@
 export default {
   data () {
     return {
+      videoInfo: {
+        videoName: '',
+        videoUrl: ''
+      }
     }
   },
   methods: {
 
   },
   created () {
+    this.videoInfo.videoName = this.$route.params.videoName
+    this.videoInfo.videoUrl = this.$route.params.videoUrl
   }
 }
 </script>
