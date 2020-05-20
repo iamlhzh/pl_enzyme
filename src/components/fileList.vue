@@ -32,7 +32,7 @@
             </el-button>
             <!-- && (data.suffix === 'mp4'||data.suffix === 'mov') -->
             <el-button
-              v-if="!data.isDirectory"
+              v-if="!data.isDirectory && (data.suffix === 'mp4'||data.suffix === 'mov')"
               type="text"
               size="mini"
               @click="() => playFile(data)"
