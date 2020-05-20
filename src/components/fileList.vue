@@ -31,7 +31,7 @@
               下载
             </el-button>
             <el-button
-              v-if="!data.isDirectory && data.suffix === 'mp4'"
+              v-if="!data.isDirectory && (data.suffix === 'mp4'||data.suffix === 'mov')"
               type="text"
               size="mini"
               @click="() => playFile(data)"
