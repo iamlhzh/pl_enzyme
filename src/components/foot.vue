@@ -123,7 +123,7 @@ export default {
   padding-right: 15px;
   /* border: 5px solid blue; */
 }
-.centered {
+.foot .centered {
   height: 100%;
   text-align: center;
   /* border: 5px solid black; */

@@ -1,7 +1,7 @@
 <template>
   <div class="playVideo">
     <h1>{{videoInfo.videoName}}</h1>
-    <video width="320" height="240" controls>
+    <video class="videoClass"  controls>
   <source :src="videoInfo.videoUrl" type="video/mp4">
 </video>
   </div>
@@ -18,15 +18,24 @@ export default {
     }
   },
   methods: {
+    goToTitle () {
+      document.documentElement.scrollTop = 260
+    }
 
   },
   created () {
     this.videoInfo.videoName = this.$route.query.videoName
     this.videoInfo.videoUrl = this.$route.query.videoUrl
+    this.goToTitle()
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.playVideo .videoClass{
+/* width:100%; */
+max-width: 1250px;
+max-height:666px;
+}
 </style>

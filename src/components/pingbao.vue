@@ -1,6 +1,6 @@
 <template>
   <div
-    class="index"
+    class="pingbao"
     style="border: 25px solid green;"
   >
     <!-- <h1>Hello,World! Now, We are coming!</h1> -->
@@ -99,7 +99,7 @@ function move () {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.index {
+.pingbao {
   width: 100%;
   height: 650px;
   background-image: url("../images/background/dt.gif");

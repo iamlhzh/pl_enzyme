@@ -159,17 +159,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .bottom {
+  .courseList .bottom {
     margin-top: 3px;
     line-height: 12px;
   }
 
-  .button {
+  .courseList .button {
     padding: 0;
     float: right;
   }
 
-  .image {
+  .courseList .image {
     width:88%;
     display: inline;
   }
