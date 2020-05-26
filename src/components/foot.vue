@@ -54,7 +54,8 @@
       <div class="row2">
         <div class="centered">
           <p>
-            版权所有 © lhzh | 辽ICP备20000981号-1
+            版权所有 © lhzh | 辽ICP备19018181号
+            <!-- 版权所有 © lhzh | 辽ICP备20000981号-1 -->
             <!-- <br>Copyright © 2010-2019 DaGong Technology Co., Ltd. All Rights Reserved.<br>  -->
             </p>
         </div><!-- .footer-text -->

@@ -7,6 +7,11 @@
       >上传文件</el-button>
     </div>
     <div class="treeList">
+    <el-button
+    v-show="backButtonShow"
+        type="mini"
+        @click="backUp"
+      >返回上级目录</el-button>
       <el-tree
         :data="data"
         :props="defaultProps"
@@ -201,8 +206,10 @@ export default {
         file: {},
         fileDirectory: '',
         files: [],
-        fileList: new FormData()
+        fileList: new FormData(),
       },
+      initPath:'static/file',
+      backButtonShow:false,
       rules: {
         fileDirectory: [
           { required: false, validator: validatefileDirectory, trigger: 'blur' }
@@ -265,7 +272,8 @@ export default {
           this.dialogVisible = false
           this.percentage = 0;
           this.$message(response.data.msg)
-          this.getFileList()
+          this.initPath='static/file/'+this.form.fileDirectory
+          this.getFileList(this.initPath)
         }
       })
     },
@@ -376,10 +384,10 @@ export default {
           ).then((response) => {
             console.log(response)
             if (response.data.code === '000') {
-
+              this.initPath='static/file/'+this.form.fileDirectory
               this.upLoadProgressdialogVisible = false
               this.$message(response.data.msg)
-              this.getFileList()
+              this.getFileList(this.initPath)
             }
           })
         } else {
@@ -498,16 +506,31 @@ export default {
       console.log(4)
       // return this.$confirm('确定移除 ${file.name}');
     },
+    backUp(){
+      if(this.initPath!=='static/file'){
+        this.initPath=this.initPath.substring(0,this.initPath.lastIndexOf('/'))
+        this.getFileList(this.initPath)
+        if(this.initPath==='static/file'){
+          this.backButtonShow=false;
+        }
+      }
+    },
     handleNodeClick (data) {
-      console.log(data)
+      if(data.isDirectory) {
+        this.backButtonShow=true;
+        console.log(data)
+        this.initPath=this.initPath + '/' + data.fileName;
+        this.getFileList(this.initPath)
+      }
       // if (data.isDirectory) {
 
       // } else {
       //   this.downLoadFile(data)
       // }
     },
-    getFileList () {
-      this.axios.get(process.env.API_ROOT + 'fileList/getFileList').then((response) => {
+    getFileList (path) {
+      console.log(path)
+      this.axios.get(process.env.API_ROOT + 'fileList/getDirectFileList?fileFolder='+path).then((response) => {
         console.log(response)
         if (response.data.code === '000') {
 
@@ -557,7 +580,16 @@ export default {
     }
   },
   created () {
-    this.getFileList()
+    var query=this.$route.query.fileFolder;
+    console.log(query)
+    // var query='static/file';
+    if(query===undefined||query===null||query===''){
+      this.initPath='static/file';
+    }else{
+      this.initPath=query;
+    }
+    console.log(this.initPath)
+    this.getFileList(this.initPath)
   }
 }
 </script>
