@@ -384,7 +384,10 @@ export default {
           ).then((response) => {
             console.log(response)
             if (response.data.code === '000') {
-              this.initPath='static/file/'+this.form.fileDirectory
+              this.initPath=this.form.fileDirectory
+              if(this.initPath!=''){
+                this.backButtonShow=true;
+              }
               this.upLoadProgressdialogVisible = false
               this.$message(response.data.msg)
               this.getFileList(this.initPath)
@@ -507,10 +510,10 @@ export default {
       // return this.$confirm('确定移除 ${file.name}');
     },
     backUp(){
-      if(this.initPath!=='static/file'){
+      if(this.initPath!==''){
         this.initPath=this.initPath.substring(0,this.initPath.lastIndexOf('/'))
         this.getFileList(this.initPath)
-        if(this.initPath==='static/file'){
+        if(this.initPath===''){
           this.backButtonShow=false;
         }
       }
@@ -584,7 +587,7 @@ export default {
     console.log(query)
     // var query='static/file';
     if(query===undefined||query===null||query===''){
-      this.initPath='static/file';
+      this.initPath='';
     }else{
       this.initPath=query;
     }
