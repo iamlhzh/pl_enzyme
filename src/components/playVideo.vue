@@ -57,8 +57,8 @@ export default {
 
   },
   created () {
-    // this.playerOptions.sources[0].src = this.$route.query.videoUrl
-    this.playerOptions.sources[0].src = 'http://baymax.wang/file/download/西方文学作品导读_北京大学_中国大学MOOC（慕课）（2019年10月15日-2020年01月31日版）/第一部分_关于阅读——一些被遗忘的常识性忠告（开场白）/gushi.mp4'
+    this.playerOptions.sources[0].src = this.$route.query.videoUrl
+    // this.playerOptions.sources[0].src = 'http://baymax.wang/file/download/西方文学作品导读_北京大学_中国大学MOOC（慕课）（2019年10月15日-2020年01月31日版）/第一部分_关于阅读——一些被遗忘的常识性忠告（开场白）/gushi.mp4'
     this.goToTitle()
   }
 }
